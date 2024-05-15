@@ -16,9 +16,7 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        padding: 20px;
-        margin-top: 20px;
-        margin-bottom: 80px;
+        margin-bottom: 25px;
     }
 </style>
 

@@ -9,7 +9,6 @@
     .content-wrapper {
         flex: 1;
         font-family: "Exo 2", sans-serif;
-        padding: 10px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -21,7 +20,6 @@
         width: 100%;
         max-width: 1500px;
         flex-wrap: wrap;
-        margin-top: 5px;
     }
 
     .day-item {

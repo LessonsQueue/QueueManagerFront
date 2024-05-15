@@ -26,9 +26,8 @@
         justify-content: center;
         align-items: center;
 
-        position: fixed;
+        position: relative;
         top: 0;
-        width: 100%;
         z-index: 1000;
     }
 
