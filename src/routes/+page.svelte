@@ -1,2 +1,31 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+    import Header from '../components/Header.svelte';
+    import Footer from '../components/Footer.svelte';
+    import Content from '../components/Content.svelte';
+</script>
+
+<style>
+    .app-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 20px;
+        margin-top: 20px;
+        margin-bottom: 80px;
+    }
+</style>
+
+<div class="app-container">
+    <Header />
+    <main>
+        <Content />
+    </main>
+    <Footer />
+</div>
