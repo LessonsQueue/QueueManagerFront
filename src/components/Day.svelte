@@ -44,6 +44,7 @@
         border-left: 5px solid #00704a;
         cursor: pointer;
         border-radius: 5px;
+        box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
