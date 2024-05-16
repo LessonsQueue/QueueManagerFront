@@ -12,19 +12,18 @@
     }
 </script>
 
-
 <style>
     .queue {
         position: fixed;
-        top: 70px;
-        bottom: 0;
+
+        top: 90px;
+        bottom: 20px;
 
         width: 50%;
         background-color: white;
         font-family: "Exo 2", sans-serif;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
-
         overflow-y: auto;
         transition: transform 0.5s ease-in-out;
     }
@@ -63,12 +62,21 @@
         border: 1px solid #ccc;
         border-radius: 4px;
     }
+
+    .close-button {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        line-height: 1;
+    }
 </style>
 
 <div class="queue {position} {open ? 'open' : ''}">
     <div class="queue-header">
         <h3>Черга на пару: </h3>
-        <button on:click={closeQueue}>Закрити</button>
+        <button class="close-button" on:click={closeQueue}>Х</button>
     </div>
     <div class="queue-content">
         {#each queue as person}
