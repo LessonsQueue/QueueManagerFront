@@ -7,11 +7,13 @@
 
     let isQueueOpen = false;
     let position = "right";
+    let currentPairName = '';
 
     function handleQueue(index) {
-        return function() {
+        return function(event) {
             isQueueOpen = true;
             position = index < 3 ? "right" : "left";
+            currentPairName = event.detail.pairName;
         };
     }
 
@@ -53,5 +55,5 @@
             </div>
         {/each}
     </div>
-    <Queue position={position} open={isQueueOpen} on:closeQueue="{closeQueue}" />
+    <Queue {currentPairName} position={position} open={isQueueOpen} on:closeQueue="{closeQueue}" />
 </div>
