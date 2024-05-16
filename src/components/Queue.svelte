@@ -4,6 +4,7 @@
     const dispatch = createEventDispatcher();
 
     export let queue = ["Machko", "Danila", "Antin", "Radik", "Bodya69", "Danila", "Antin", "Radik", "Bodya69" , "Danila", "Antin", "Radik", "Bodya69" , "Danila", "Antin", "Radik", "Bodya69"];
+    export let currentPairName = '';
     export let position = 'right'; // 'right' or 'left'
     export let open = false;
 
@@ -75,8 +76,8 @@
 
 <div class="queue {position} {open ? 'open' : ''}">
     <div class="queue-header">
-        <h3>Черга на пару: </h3>
-        <button class="close-button" on:click={closeQueue}>Х</button>
+        <h3>Черга на пару: {currentPairName}</h3>
+        <button class="close-button" on:click={closeQueue}>X</button>
     </div>
     <div class="queue-content">
         {#each queue as person}

@@ -4,7 +4,7 @@
     const dispatch = createEventDispatcher();
 
     function showQueue(pair) {
-        dispatch('showQueue', { queue: pair.queue });
+        dispatch('showQueue', { queue: pair.queue, pairName: pair.name });
     }
 
     function groupPairsByTime(pairs) {
@@ -18,7 +18,7 @@
         return Object.values(grouped);
     }
 
-    function getTypeOfClass(type){
+    function getTypeOfPair(type){
         if (type === 'Лаб on-line') {
             return 'type-lab';
         } else if (type === 'Лек on-line') {
@@ -104,7 +104,7 @@
             <p class="time">{group[0].time.replace('.', ':')}</p>
             {#each group as pair}
                 <div class="day-item" on:click={() => showQueue(pair)}>
-                    <p class="{getTypeOfClass(pair.type)}">{pair.type.replace('on-line', '')}</p>
+                    <p class="{getTypeOfPair(pair.type)}">{pair.type.replace('on-line', '')}</p>
                     <p class="name">{pair.name}</p>
                     <p class="teacher"><b>Викладач:</b> {pair.teacherName}</p>
                 </div>
