@@ -9,17 +9,15 @@
     let position = "right";
     let currentPairName = '';
 
-    function handleQueue(index) {
-        return function(event) {
+    const handleQueue = (index) => {
+        return (event) => {
             isQueueOpen = true;
             position = index < 3 ? "right" : "left";
             currentPairName = event.detail.pairName;
         };
     }
 
-    function closeQueue() {
-        isQueueOpen = false;
-    }
+    const closeQueue = () => isQueueOpen = false;
 </script>
 
 <style>

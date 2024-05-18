@@ -8,9 +8,7 @@
     export let position = 'right'; // 'right' or 'left'
     export let open = false;
 
-    function closeQueue() {
-        dispatch('closeQueue');
-    }
+    const closeQueue = () => dispatch('closeQueue');
 </script>
 
 <style>
