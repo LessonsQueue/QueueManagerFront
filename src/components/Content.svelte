@@ -5,6 +5,9 @@
     import { scheduleData, fetchSchedule } from '../scheduleFetch.js';
 
     let currentSchedule = [];
+    let isQueueOpen = false;
+    let position = "right";
+    let currentPairName = '';
 
     onMount(() => {
         fetchSchedule();
@@ -16,17 +19,13 @@
         }
     });
 
-    let isQueueOpen = false;
-    let position = "right";
-    let currentPairName = '';
-
-    function getWeekNumber(d) {
+    const getWeekNumber = (d) => {
         d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
         const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
         return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
     }
 
-    function getScheduleWeek(data) {
+    const getScheduleWeek = (data) => {
         const currentWeek = getWeekNumber(new Date());
         return currentWeek % 2 === 0 ? data.scheduleFirstWeek : data.scheduleSecondWeek;
     }
