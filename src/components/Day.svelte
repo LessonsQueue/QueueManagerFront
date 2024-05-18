@@ -4,7 +4,7 @@
     const dispatch = createEventDispatcher();
 
     function showQueue(pair) {
-        dispatch('showQueue', { queue: pair.queue, pairName: pair.name });
+        dispatch('showQueue', { pairName: pair.name });
     }
 
     function groupPairsByTime(pairs) {
