@@ -3,11 +3,9 @@
     export let day;
     const dispatch = createEventDispatcher();
 
-    function showQueue(pair) {
-        dispatch('showQueue', { pairName: pair.name });
-    }
+    const showQueue = (pair) => dispatch('showQueue', { pairName: pair.name });
 
-    function groupPairsByTime(pairs) {
+    const groupPairsByTime = (pairs) => {
         const grouped = {};
         pairs.forEach(pair => {
             if (!grouped[pair.time]) {
@@ -18,7 +16,7 @@
         return Object.values(grouped);
     }
 
-    function getTypeOfPair(type){
+    const getTypeOfPair = (type) => {
         if (type === 'Лаб on-line') {
             return 'type-lab';
         } else if (type === 'Лек on-line') {
