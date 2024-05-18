@@ -1,13 +1,35 @@
 <script>
+    import { onMount } from 'svelte';
     import Day from './Day.svelte';
     import Queue from './Queue.svelte';
-    import { scheduleData } from '../mockData.js';
+    import { scheduleData, fetchSchedule } from '../scheduleFetch.js';
 
-    const schedule = scheduleData.data.scheduleFirstWeek;
+    let currentSchedule = [];
+
+    onMount(() => {
+        fetchSchedule();
+    });
+
+    $: scheduleData.subscribe(data => {
+        if (data && data.data) {
+            currentSchedule = getScheduleWeek(data.data);
+        }
+    });
 
     let isQueueOpen = false;
     let position = "right";
     let currentPairName = '';
+
+    function getWeekNumber(d) {
+        d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    function getScheduleWeek(data) {
+        const currentWeek = getWeekNumber(new Date());
+        return currentWeek % 2 === 0 ? data.scheduleFirstWeek : data.scheduleSecondWeek;
+    }
 
     const handleQueue = (index) => {
         return (event) => {
@@ -47,7 +69,7 @@
 
 <div class="content-wrapper">
     <div class="day-container">
-        {#each schedule as day, index}
+        {#each currentSchedule as day, index}
             <div class="day-item">
                 <Day {day} on:showQueue="{handleQueue(index)}" />
             </div>
