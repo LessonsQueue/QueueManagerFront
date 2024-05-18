@@ -2,7 +2,7 @@ import { writable } from 'svelte/store';
 
 export const scheduleData = writable({});
 
-export async function fetchSchedule() {
+export const fetchSchedule = async () => {
     const url = 'https://api.campus.kpi.ua/schedule/lessons?groupId=28bfbe3d-c77c-4068-b3eb-f617d1a19cfc';
     const response = await fetch(url);
 
