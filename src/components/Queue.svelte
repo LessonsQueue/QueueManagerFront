@@ -9,6 +9,10 @@
     export let open = false;
 
     const closeQueue = () => dispatch('closeQueue');
+
+    const joinQueue = () => {
+        alert("Ви були успішно додані в чергу!")
+    }
 </script>
 
 <style>
@@ -70,6 +74,36 @@
         cursor: pointer;
         line-height: 1;
     }
+
+    .joinQueue-button {
+        position: sticky;
+        bottom: 10px;
+        margin-left: 85%;
+        padding: 0.5rem 1rem;
+
+        background-color: #00704a;
+
+        color: white;
+        font-family: "Exo 2", sans-serif;
+        font-weight: bold;
+
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        transition: background-color 0.3s, box-shadow 0.3s;
+
+        z-index: 1050;
+    }
+
+    .joinQueue-button:hover {
+        background-color: #45a049;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.24), 0 5px 15px rgba(0,0,0,0.19);
+    }
+
+    .joinQueue-button:active {
+        transform: scale(0.95);
+    }
 </style>
 
 <div class="queue {position} {open ? 'open' : ''}">
@@ -83,5 +117,6 @@
                 {person}
             </div>
         {/each}
+        <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
     </div>
 </div>
