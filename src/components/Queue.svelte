@@ -66,13 +66,54 @@
         border-radius: 4px;
     }
 
-    .close-button {
-        background: none;
-        border: none;
-        color: white;
-        font-size: 1.5rem;
+    .close-button{
+        width: 50px;
+        height: 50px;
         cursor: pointer;
-        line-height: 1;
+    }
+
+    .leftright{
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        margin-top: 24px;
+        background-color: white;
+        border-radius: 2px;
+        transform: rotate(45deg);
+        transition: all .3s ease-in;
+    }
+
+    .rightleft{
+        height: 4px;
+        width: 50px;
+        position: absolute;
+        margin-top: 24px;
+        background-color: white;
+        border-radius: 2px;
+        transform: rotate(-45deg);
+        transition: all .3s ease-in;
+    }
+
+    label{
+        color: black;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: .6em;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all .3s ease-in;
+        opacity: 0;
+    }
+
+    .close-button:hover .leftright{
+        transform: rotate(-45deg);
+        background-color: white;
+    }
+    .close-button:hover .rightleft{
+        transform: rotate(45deg);
+        background-color: white;
+    }
+    .close-button:hover label{
+        opacity: 1;
     }
 
     .joinQueue-button {
@@ -109,7 +150,10 @@
 <div class="queue {position} {open ? 'open' : ''}">
     <div class="queue-header">
         <h3>Черга на пару: {currentPairName}</h3>
-        <button class="close-button" on:click={closeQueue}>X</button>
+        <div class="close-button" on:click={closeQueue}>
+            <div class="leftright"></div>
+            <div class="rightleft"></div>
+        </div>
     </div>
     <div class="queue-content">
         {#each queue as person}
