@@ -94,16 +94,6 @@
         transition: all .3s ease-in;
     }
 
-    label{
-        color: black;
-        font-family: Helvetica, Arial, sans-serif;
-        font-size: .6em;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        transition: all .3s ease-in;
-        opacity: 0;
-    }
-
     .close-button:hover .leftright{
         transform: rotate(-45deg);
         background-color: white;
