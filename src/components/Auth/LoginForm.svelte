@@ -20,6 +20,13 @@
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3)
     }
 
+    .welcome-title {
+        margin: 5px;
+        font-size: 24px;
+        color: #333;
+        font-weight: 500;
+    }
+
     input[type="email"], input[type="password"] {
         width: 100%;
         padding: 10px;
@@ -48,6 +55,7 @@
 
 
 <form on:submit|preventDefault={handleSubmit}>
+    <div class="welcome-title">Welcome to IM-22 workspace!</div>
     <input type="email" bind:value={email} placeholder="Email">
     <input type="password" bind:value={password} placeholder="Password">
     <button type="submit">Login</button>
