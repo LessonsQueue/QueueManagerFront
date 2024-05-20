@@ -22,19 +22,32 @@
     }
 
     .welcome-title {
-        margin: 5px;
+        margin: 5px 5px 15px 5px;
         font-size: 24px;
         color: #333;
         font-weight: 500;
     }
 
+    .input-container {
+        position: relative;
+        margin-top: 10px;
+    }
+
     input[type="email"], input[type="password"] {
         width: 100%;
-        padding: 10px;
-        margin-top: 10px;
+        padding: 10px 10px 10px 40px;
         border: 1px solid #ccc;
         border-radius: 4px;
         box-sizing: border-box;
+    }
+
+    .icon {
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #00704a;
+        z-index: 10;
     }
 
     button {
@@ -54,10 +67,15 @@
     }
 </style>
 
-
 <form on:submit|preventDefault={handleSubmit} in:slide={{ duration: 1000 }}>
     <div class="welcome-title">Welcome back to IM-22 workspace!</div>
-    <input type="email" bind:value={email} placeholder="Email">
-    <input type="password" bind:value={password} placeholder="Password">
+    <div class="input-container">
+        <i class="fas fa-envelope icon"></i>
+        <input type="email" bind:value={email} placeholder="Email">
+    </div>
+    <div class="input-container">
+        <i class="fas fa-lock icon"></i>
+        <input type="password" bind:value={password} placeholder="Password">
+    </div>
     <button type="submit">Login</button>
 </form>
