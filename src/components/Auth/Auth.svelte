@@ -22,19 +22,19 @@
 
 <style>
     .auth-container {
-        text-align: center; /* Центрування всього контенту */
+        text-align: center;
         padding: 20px;
     }
 
     img.logo {
-        width: 150px; /* Або інший розмір залежно від вашого дизайну */
-        margin-top: 20px; /* Додає відступ між логотипом та формою */
+        width: 150px;
+        margin-top: 20px;
         border-radius: 50%;
     }
 
     button {
-        margin-top: 10px; /* Додає відступ між формою та кнопкою */
-        width: auto; /* Перевизначення стилів кнопки з LoginForm або SignUpForm */
+        margin-top: 10px;
+        width: auto;
         padding: 10px 20px;
         background-color: #00704a;
         color: white;
