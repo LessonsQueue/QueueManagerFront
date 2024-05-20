@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { slide } from 'svelte/transition';
 
     export let firstName = '';
     export let lastName = '';
@@ -66,7 +67,7 @@
     }
 </style>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit} in:slide={{ duration: 1000 }}>
     <div class="welcome-title">Become a part of IM-22 workspace</div>
     <input type="text" bind:value={firstName} placeholder="First Name">
     <input type="text" bind:value={lastName} placeholder="Last Name">

@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+    import { slide } from 'svelte/transition';
 
     export let email = '';
     export let password = '';
@@ -54,8 +55,8 @@
 </style>
 
 
-<form on:submit|preventDefault={handleSubmit}>
-    <div class="welcome-title">Welcome back IM-22 workspace!</div>
+<form on:submit|preventDefault={handleSubmit} in:slide={{ duration: 1000 }}>
+    <div class="welcome-title">Welcome back to IM-22 workspace!</div>
     <input type="email" bind:value={email} placeholder="Email">
     <input type="password" bind:value={password} placeholder="Password">
     <button type="submit">Login</button>
