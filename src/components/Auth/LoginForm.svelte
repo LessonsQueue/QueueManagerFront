@@ -14,7 +14,7 @@
 <style>
     form {
         max-width: 800px;
-        margin: 50px auto;
+        margin: 50px 50px 35px 50px;
         padding: 20px;
         background-color: #f3f3f3;
         border-radius: 8px;
