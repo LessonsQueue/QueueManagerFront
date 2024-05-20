@@ -24,6 +24,7 @@
     .auth-container {
         text-align: center;
         padding: 20px;
+        font-family: 'Arial', sans-serif;
     }
 
     img.logo {
@@ -32,8 +33,23 @@
         border-radius: 50%;
     }
 
+    .text-link {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .here-link {
+        color: #00704a;
+        cursor: pointer;
+        text-decoration: underline;
+    }
+
+    .here-link:hover {
+        color: #005a36;
+    }
+
     button {
-        margin-top: 10px;
+        margin-top: 20px;
         width: auto;
         padding: 10px 20px;
         background-color: #00704a;
@@ -53,9 +69,13 @@
     <img class="logo" src="/src/img/IMlogo.jpg" alt="Group Logo">
     {#if showLoginForm}
         <LoginForm on:login={handleLogin}/>
-        <button on:click={switchToSignup}>Don't have an account? Register here</button>
+        <div class="text-link">
+            Don't have an account? Register <span class="here-link" on:click={switchToSignup}>here</span>.
+        </div>
     {:else}
         <SignupForm on:signup={handleSignup}/>
-        <button on:click={switchToLogin}>Already have an account? Login here</button>
+        <div class="text-link">
+            Already have an account? Login <span class="here-link" on:click={switchToLogin}>here</span>.
+        </div>
     {/if}
 </div>
