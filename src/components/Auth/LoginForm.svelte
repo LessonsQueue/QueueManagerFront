@@ -55,7 +55,7 @@
 
 
 <form on:submit|preventDefault={handleSubmit}>
-    <div class="welcome-title">Welcome to IM-22 workspace!</div>
+    <div class="welcome-title">Welcome back IM-22 workspace!</div>
     <input type="email" bind:value={email} placeholder="Email">
     <input type="password" bind:value={password} placeholder="Password">
     <button type="submit">Login</button>
