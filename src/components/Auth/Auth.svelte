@@ -3,12 +3,51 @@
     import SignupForm from './SignUpForm.svelte';
     let showLoginForm = true;
 
-    const handleLogin = (event) => {
-        console.log('Login data:', event.detail);
+    const handleLogin = async (event) => {
+        const data = {
+            email: event.detail.email,
+            password: event.detail.password,
+        };
+        const response = await fetch(import.meta.env.VITE_HOST + '/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+        const resData = await response.json();
+        if (!response.ok) {
+            console.log(resData);
+            // showMessage('error', resData.message)
+            // show error message
+            return ;
+        }
+        localStorage.setItem('accessToken', resData.accessToken);
+        localStorage.setItem('refreshToken', resData.refreshToken);
+        // show ok message
+        // showMessage('success', 'you are logined')
     }
 
-    const handleSignup = (event) => {
-        console.log('Signup data:', event.detail);
+    const handleSignup = async (event) => {
+        const data = {
+            email: event.detail.email,
+            password: event.detail.password,
+            passwordRepeat: event.detail.confirmPassword,
+            firstName: event.detail.firstName,
+            lastName: event.detail.lastName,
+        };
+        const response = await fetch(import.meta.env.VITE_HOST + '/auth/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        });
+        const resData = await response.json();
+        if (!response.ok) {
+            // showMessage('error', resData.message[0])
+            // show error message
+            return ;
+        }
+        // show ok message
+        // showMessage('success', 'you are registerd')
+        showLoginForm = true;
     }
 
     const switchToSignup = () => {
