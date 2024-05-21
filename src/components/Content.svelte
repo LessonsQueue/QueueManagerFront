@@ -60,7 +60,6 @@
 
     .day-item {
         flex: 1;
-        margin: 5px;
         max-width: calc(33% - 20px);
     }
 
