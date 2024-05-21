@@ -4,9 +4,10 @@
 
     export let email = '';
     export let password = '';
+
     const dispatch = createEventDispatcher();
 
-    function handleSubmit() {
+    const handleSubmit = () => {
         dispatch('login', { email, password });
     }
 </script>
