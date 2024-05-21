@@ -3,19 +3,19 @@
     import SignupForm from './SignUpForm.svelte';
     let showLoginForm = true;
 
-    function handleLogin(event) {
+    const handleLogin = (event) => {
         console.log('Login data:', event.detail);
     }
 
-    function handleSignup(event) {
+    const handleSignup = (event) => {
         console.log('Signup data:', event.detail);
     }
 
-    function switchToSignup() {
+    const switchToSignup = () => {
         showLoginForm = false;
     }
 
-    function switchToLogin() {
+    const switchToLogin = () => {
         showLoginForm = true;
     }
 </script>

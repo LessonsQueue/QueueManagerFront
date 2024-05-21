@@ -7,9 +7,10 @@
     export let email = '';
     export let password = '';
     export let confirmPassword = '';
+
     const dispatch = createEventDispatcher();
 
-    function handleSubmit() {
+    const handleSubmit = () => {
         if (password !== confirmPassword) {
             alert('Passwords do not match');
             return;
