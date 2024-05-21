@@ -38,7 +38,7 @@
     .day-item {
         background-color: #f0f0f0;
         padding: 10px;
-        margin: -10px 0;
+        margin: 0 0 10px 0;
         border-left: 5px solid #00704a;
         cursor: pointer;
         border-radius: 5px;
@@ -49,6 +49,7 @@
         text-align: center;
         color: #00704a;
         font-size: 1.5rem;
+        margin: 0;
     }
 
     .day-item p {
@@ -60,6 +61,7 @@
         font-size: 1.2rem;
         color: #00704a;
         font-weight: bold;
+        margin-bottom: 5px;
     }
 
     .day-item .name {

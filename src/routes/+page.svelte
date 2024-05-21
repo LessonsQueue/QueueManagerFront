@@ -16,7 +16,7 @@
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        margin-bottom: 25px;
+        margin-bottom: 10px;
     }
 </style>
 
