@@ -15,7 +15,7 @@
             alert('Passwords do not match');
             return;
         }
-        dispatch('signup', { firstName, lastName, email, password });
+        dispatch('signup', { firstName, lastName, email, password, confirmPassword });
     }
 </script>
 
