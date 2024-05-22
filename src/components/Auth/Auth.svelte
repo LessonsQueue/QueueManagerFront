@@ -1,6 +1,7 @@
 <script>
     import LoginForm from './LoginForm.svelte';
     import SignupForm from './SignUpForm.svelte';
+    import { showMessage } from '/src/messageStore';
     let showLoginForm = true;
 
     const handleLogin = async (event) => {
@@ -16,14 +17,12 @@
         const resData = await response.json();
         if (!response.ok) {
             console.log(resData);
-            // showMessage('error', resData.message)
-            // show error message
+            showMessage('error', resData.message)
             return ;
         }
         localStorage.setItem('accessToken', resData.accessToken);
         localStorage.setItem('refreshToken', resData.refreshToken);
-        // show ok message
-        // showMessage('success', 'you are logined')
+        showMessage('success', 'you are logined')
     }
 
     const handleSignup = async (event) => {
@@ -41,12 +40,10 @@
         });
         const resData = await response.json();
         if (!response.ok) {
-            // showMessage('error', resData.message[0])
-            // show error message
+            showMessage('error', resData.message[0])
             return ;
         }
-        // show ok message
-        // showMessage('success', 'you are registerd')
+        showMessage('success', 'you are registerd')
         showLoginForm = true;
     }
 

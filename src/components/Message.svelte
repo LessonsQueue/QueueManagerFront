@@ -1,10 +1,12 @@
 <script>
     import { fly } from 'svelte/transition';
-    import { writable } from 'svelte/store';
+    import {message} from "../messageStore.js";
 
-    export let type = 'info'; // default value
-    export let message = '';
-    export let show = writable(false);
+    let msg;
+
+    message.subscribe(data => {
+        msg = data
+    });
 
     const backgroundColors = {
         success: 'rgba(1,126,1,0.6)',
@@ -12,8 +14,12 @@
         info: 'rgba(0,112,74,0.71)'
     };
 
-    const closeMessage = () => {
-        show.set(false);
+    function closeMessage() {
+        message.set({
+            show: false,
+            type: 'info',
+            text: ''
+        });
     }
 </script>
 
@@ -53,9 +59,9 @@
     }
 </style>
 
-{#if $show}
-    <div class="message-modal" style="background-color: {backgroundColors[type]}" in:fly={{ x: 100, duration: 500 }} out:fly={{ x: 100, duration: 500 }}>
-        <p>{message}</p>
+{#if msg.show}
+    <div class="message-modal" style="background-color: {backgroundColors[msg.type]}" in:fly={{ x: 100, duration: 500 }} out:fly={{ x: 100, duration: 500 }}>
+        <p>{msg.text}</p>
         <button class="close-button" on:click={closeMessage}>&times;</button>
     </div>
 {/if}
