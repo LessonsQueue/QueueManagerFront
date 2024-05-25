@@ -1,0 +1,8 @@
+.dockerignore
+Dockerfile
+.git
+.gitignore
+.github
+*.md
+.svelte-kit
+node_modules
