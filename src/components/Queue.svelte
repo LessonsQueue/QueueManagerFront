@@ -1,5 +1,6 @@
 <script>
     import {createEventDispatcher} from "svelte";
+    import {showMessage} from "../messageStore.js";
 
     const dispatch = createEventDispatcher();
 
@@ -12,6 +13,16 @@
 
     const joinQueue = () => {
         alert("Ви були успішно додані в чергу!")
+    }
+
+    const removeFromQueue = (index) => {
+        showMessage("info", "User has been removed!")
+        console.log("removed user " + index)
+        // TO DO implement user removing function
+    }
+
+    const deleteQueue = () => {
+        // TO DO implement queue delete function
     }
 </script>
 
@@ -60,10 +71,26 @@
     }
 
     .queue-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: 1rem;
         padding: 0.5rem;
         border: 1px solid #ccc;
         border-radius: 4px;
+        position: relative;
+    }
+
+    .remove-button {
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        font-size: 20px;
+        color: red;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .close-button{
@@ -146,11 +173,13 @@
         </div>
     </div>
     <div class="queue-content">
-        {#each queue as person}
+        {#each queue as person, index}
             <div class="queue-item">
                 {person}
+                <button class="remove-button" on:click={() => removeFromQueue(index)}>&times;</button>
             </div>
         {/each}
         <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
+        <button class="delete-queue" on:click={deleteQueue}>Видалити чергу</button>
     </div>
 </div>
