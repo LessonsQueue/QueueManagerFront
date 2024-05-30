@@ -12,17 +12,17 @@
     const closeQueue = () => dispatch('closeQueue');
 
     const joinQueue = () => {
-        alert("Ви були успішно додані в чергу!")
+        showMessage("info", "Ви були успішно додані до черги!")
         // TO DO implement user adding function
     }
 
     const removeUserFromQueue = (index) => {
-        showMessage("info", "User has been removed!")
-        console.log("removed user " + index)
+        showMessage("info", "Студента було успішно видалено!")
         // TO DO implement user removing function
     }
 
-    const deleteQueue = () => {
+    const removeMyself= () => {
+        showMessage("info", "Ви успішно видалили себе з черги!")
         // TO DO implement queue delete function
     }
 </script>
@@ -202,6 +202,6 @@
             </div>
         {/each}
         <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
-        <button class="delete-queue-button" on:click={deleteQueue}>Видалити себе з черги</button>
+        <button class="delete-queue-button" on:click={removeMyself}>Видалити себе з черги</button>
     </div>
 </div>
