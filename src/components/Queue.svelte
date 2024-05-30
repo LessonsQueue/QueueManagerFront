@@ -4,7 +4,7 @@
 
     const dispatch = createEventDispatcher();
 
-    export let queue = ["Machko", "Danila", "Antin", "Radik", "Bodya69", "Danila", "Antin", "Radik", "Bodya69" , "Danila", "Antin", "Radik", "Bodya69" , "Danila", "Antin", "Radik", "Bodya69"];
+    export let queue = ["Machko", "Danila", "Radik", "Bodya69" , "Danila", "Radik", "Bodya69" ,"Danila", "Antin", "Radik", "Bodya69"];
     export let currentPairName = '';
     export let position = 'right'; // 'right' or 'left'
     export let open = false;
@@ -13,9 +13,10 @@
 
     const joinQueue = () => {
         alert("Ви були успішно додані в чергу!")
+        // TO DO implement user adding function
     }
 
-    const removeFromQueue = (index) => {
+    const removeUserFromQueue = (index) => {
         showMessage("info", "User has been removed!")
         console.log("removed user " + index)
         // TO DO implement user removing function
@@ -154,6 +155,27 @@
         z-index: 1050;
     }
 
+    .delete-queue-button {
+        background-color: rgba(255, 0, 0, 0.72);
+
+        position: fixed;
+        left: 15px;
+
+        height: 5vh;
+
+        color: white;
+        font-family: "Exo 2", sans-serif;
+        font-weight: bold;
+
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+
+        transition: background-color 0.3s, box-shadow 0.3s;
+
+        z-index: 1050;
+    }
+
     .joinQueue-button:hover {
         background-color: #45a049;
         box-shadow: 0 2px 5px rgba(0,0,0,0.24), 0 5px 15px rgba(0,0,0,0.19);
@@ -176,10 +198,10 @@
         {#each queue as person, index}
             <div class="queue-item">
                 {person}
-                <button class="remove-button" on:click={() => removeFromQueue(index)}>&times;</button>
+                <button class="remove-button" on:click={() => removeUserFromQueue(index)}>&times;</button>
             </div>
         {/each}
         <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
-        <button class="delete-queue" on:click={deleteQueue}>Видалити чергу</button>
+        <button class="delete-queue-button" on:click={deleteQueue}>Видалити себе з черги</button>
     </div>
 </div>
