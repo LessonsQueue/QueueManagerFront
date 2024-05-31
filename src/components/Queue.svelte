@@ -1,10 +1,10 @@
 <script>
-    import {createEventDispatcher} from "svelte";
-    import {showMessage} from "../messageStore.js";
+    import {createEventDispatcher} from 'svelte';
+    import {showMessage} from '../messageStore.js';
 
     const dispatch = createEventDispatcher();
 
-    export let queue = ["Machko", "Danila", "Radik", "Bodya69" , "Danila", "Radik", "Bodya69" ,"Danila", "Antin", "Radik", "Bodya69"];
+    export let queue = ['Machko', 'Danila', 'Radik', 'Bodya69' , 'Danila', 'Radik', 'Bodya69' ,'Danila', 'Antin', 'Radik', 'Bodya69'];
     export let currentPairName = '';
     export let position = 'right'; // 'right' or 'left'
     export let open = false;
@@ -12,17 +12,17 @@
     const closeQueue = () => dispatch('closeQueue');
 
     const joinQueue = () => {
-        showMessage("info", "Ви були успішно додані до черги!")
+        showMessage('info', 'Ви були успішно додані до черги!')
         // TO DO implement user adding function
     }
 
     const removeUserFromQueue = (index) => {
-        showMessage("info", "Студента було успішно видалено!")
+        showMessage('info', 'Студента було успішно видалено!')
         // TO DO implement user removing function
     }
 
     const removeMyself= () => {
-        showMessage("info", "Ви успішно видалили себе з черги!")
+        showMessage('info', 'Ви успішно видалили себе з черги!')
         // TO DO implement queue delete function
     }
 </script>
@@ -36,7 +36,7 @@
 
         width: 50%;
         background-color: white;
-        font-family: "Exo 2", sans-serif;
+        font-family: 'Exo 2', sans-serif;
         box-shadow: 0 10px 10px 10px rgba(0, 0, 0, 0.1);
         z-index: 1000;
         overflow-y: auto;
