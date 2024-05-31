@@ -1,6 +1,6 @@
 <script>
     import { fly } from 'svelte/transition';
-    import {message} from "../messageStore.js";
+    import {message} from '../messageStore.js';
 
     let msg;
 
