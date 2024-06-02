@@ -1,17 +1,17 @@
 <script>
-  import { auth, logOut } from '../auth';
+    import { auth, logOut } from '../auth';
     import { showMessage } from '../messageStore';
 
-  let isLogined = false;
-  auth.subscribe(value => {
-    isLogined = value;
-  });
+    let isLogined = false;
+    auth.subscribe(value => {
+        isLogined = value;
+    });
 
-  const handleLogOut = () => {
-    console.log('logout');
-    logOut();
-    showMessage('info', 'You are logged out');
-  }
+    const handleLogOut = () => {
+        console.log('logout');
+        logOut();
+        showMessage('info', 'You are logged out');
+    }
 </script>
 
 <header>
@@ -21,7 +21,7 @@
         <a href="#Feedback">Feedback</a>
         <a href="#donate">Donate</a>
         {#if isLogined}
-            <a href="#" on:click={handleLogOut}>Log out</a>
+            <a href="/" on:click={handleLogOut}>Log out</a>
         {:else}
             <a href="/auth">Sign In</a>
         {/if}

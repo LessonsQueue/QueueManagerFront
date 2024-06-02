@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { goto } from '$app/navigation';
 
 export const auth = writable(false);
 
@@ -16,9 +17,7 @@ const refreshToken = async () => {
   if (res.ok) {
     localStorage.setItem('accessToken', data.accessToken);
     localStorage.setItem('refreshToken', data.refreshToken);
-  }
-  if (data.statusCode === 401) auth.set(false);
-  else throw new Error(data.message);
+  } else throw new Error(data.message);
 };
 
 const fetchWithAuth = async (url, method, body, accessToken) => {
@@ -41,6 +40,8 @@ export const safeFetch = async (url, method, body) => {
 
   if (data.statusCode === 401) {
     await refreshToken().catch(err => {
+      logOut();
+      goto('/auth');
       throw err;
     });
     const response = await fetchWithAuth(url, method, body, accessToken);
