@@ -5,6 +5,7 @@ export const auth = writable(false);
 const refreshToken = async () => {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
+  if (!accessToken || !refreshToken) throw Error('Please login');
   const res = await fetchWithAuth(
     import.meta.env.VITE_HOST + '/auth/refresh-token', 
     'PATCH',

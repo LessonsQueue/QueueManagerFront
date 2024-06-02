@@ -3,7 +3,7 @@
     export let day;
     const dispatch = createEventDispatcher();
 
-    const showQueue = (pair) => dispatch('showQueue', { pairName: pair.name });
+    const showQueue = (pair) => dispatch('showQueue', { pair: pair, day: day.day });
 
     const groupPairsByTime = (pairs) => {
         const grouped = {};
