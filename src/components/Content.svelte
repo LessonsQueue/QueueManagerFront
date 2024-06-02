@@ -3,11 +3,15 @@
     import Day from './Day.svelte';
     import Queue from './Queue.svelte';
     import { scheduleData, fetchSchedule } from '../scheduleFetch.js';
+    import { safeFetch } from '../auth';
+    import { createHash } from '../utils-hash';
+    import { showMessage } from '../messageStore';
 
     let currentSchedule = [];
     let isQueueOpen = false;
     let position = "right";
     let currentPairName = '';
+    let currentQueue = null;
 
     onMount(() => {
         fetchSchedule();
@@ -34,7 +38,16 @@
         return (event) => {
             isQueueOpen = true;
             position = index < 3 ? "right" : "left";
-            currentPairName = event.detail.pairName;
+            currentPairName = event.detail.pair.name;
+            setTimeout(async () => {
+                const queueId = createHash(event.detail.pair.name, event.detail.pair.time + event.detail.day);
+                try {
+                    const data = await safeFetch(import.meta.env.VITE_HOST + '/queues/' + queueId);
+                    currentQueue = data;
+                } catch (err) {
+                    showMessage('error', err.message);
+                }
+            }, 0);
         };
     }
 
@@ -73,5 +86,5 @@
             </div>
         {/each}
     </div>
-    <Queue {currentPairName} position={position} open={isQueueOpen} on:closeQueue="{closeQueue}" />
+    <Queue {currentPairName} position={position} open={isQueueOpen} queue={currentQueue} on:closeQueue="{closeQueue}" />
 </div>

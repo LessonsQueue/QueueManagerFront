@@ -184,6 +184,12 @@
     .joinQueue-button:active {
         transform: scale(0.95);
     }
+
+    .loading {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 700;
+    }
 </style>
 
 <div class="queue {position} {open ? 'open' : ''}">
@@ -195,13 +201,17 @@
         </div>
     </div>
     <div class="queue-content">
-        {#each queue as person, index}
-            <div class="queue-item">
-                {person}
-                <button class="remove-button" on:click={() => removeUserFromQueue(index)}>&times;</button>
-            </div>
-        {/each}
-        <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
-        <button class="delete-queue-button" on:click={removeMyself}>Видалити себе з черги</button>
+        {#if queue}
+            {#each queue as person, index}
+                <div class="queue-item">
+                    {person}
+                    <button class="remove-button" on:click={() => removeUserFromQueue(index)}>&times;</button>
+                </div>
+            {/each}
+            <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
+            <button class="delete-queue-button" on:click={removeMyself}>Видалити себе з черги</button>    
+        {:else}
+            <p class="loading">Loading...</p>
+        {/if}
     </div>
 </div>
