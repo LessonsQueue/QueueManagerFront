@@ -12,6 +12,7 @@
     let position = "right";
     let currentPairName = '';
     let currentQueue = null;
+    let queueId = '';
 
     onMount(() => {
         fetchSchedule();
@@ -39,11 +40,11 @@
             isQueueOpen = true;
             position = index < 3 ? "right" : "left";
             currentPairName = event.detail.pair.name;
+            queueId = createHash(event.detail.pair.name, event.detail.pair.time + event.detail.day);
             setTimeout(async () => {
-                const queueId = createHash(event.detail.pair.name, event.detail.pair.time + event.detail.day);
                 try {
                     const data = await safeFetch(import.meta.env.VITE_HOST + '/queues/' + queueId);
-                    currentQueue = data;
+                    currentQueue = data.participants;
                 } catch (err) {
                     showMessage('error', err.message);
                 }
@@ -86,5 +87,5 @@
             </div>
         {/each}
     </div>
-    <Queue {currentPairName} position={position} open={isQueueOpen} queue={currentQueue} on:closeQueue="{closeQueue}" />
+    <Queue {currentPairName} position={position} open={isQueueOpen} queue={currentQueue} queueId={queueId} on:closeQueue="{closeQueue}" />
 </div>

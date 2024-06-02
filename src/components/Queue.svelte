@@ -1,29 +1,43 @@
 <script>
     import {createEventDispatcher} from 'svelte';
     import {showMessage} from '../messageStore.js';
+    import { safeFetch } from '../auth.js';
 
     const dispatch = createEventDispatcher();
 
-    export let queue = ['Machko', 'Danila', 'Radik', 'Bodya69' , 'Danila', 'Radik', 'Bodya69' ,'Danila', 'Antin', 'Radik', 'Bodya69'];
+    export let queue = [];
     export let currentPairName = '';
     export let position = 'right'; // 'right' or 'left'
     export let open = false;
+    export let queueId = '';
 
     const closeQueue = () => dispatch('closeQueue');
 
-    const joinQueue = () => {
-        showMessage('info', 'Ви були успішно додані до черги!')
-        // TO DO implement user adding function
+    const joinQueue = async () => {
+        try {
+            await safeFetch(import.meta.env.VITE_HOST + '/queues/' + queueId + '/join', 'POST');
+            showMessage('info', 'Ви були успішно додані до черги!');
+        } catch (err) {
+            showMessage('error', err.message);
+        }
     }
 
-    const removeUserFromQueue = (index) => {
-        showMessage('info', 'Студента було успішно видалено!')
-        // TO DO implement user removing function
+    const removeUserFromQueue = async (userId) => {
+        try {
+            await safeFetch(import.meta.env.VITE_HOST + '/queues/' + queueId + '/remove/' + userId, 'DELETE');
+            showMessage('info', 'Студента було успішно видалено!');
+        } catch (err) {
+            showMessage('error', err.message);
+        }
     }
 
-    const removeMyself= () => {
-        showMessage('info', 'Ви успішно видалили себе з черги!')
-        // TO DO implement queue delete function
+    const removeMyself = async () => {
+        try {
+            await safeFetch(import.meta.env.VITE_HOST + '/queues/' + queueId + '/leave', 'DELETE');
+            showMessage('info', 'Ви успішно видалили себе з черги!');
+        } catch (err) {
+            showMessage('error', err.message);
+        }
     }
 </script>
 
@@ -185,7 +199,7 @@
         transform: scale(0.95);
     }
 
-    .loading {
+    .info {
         text-align: center;
         font-size: 20px;
         font-weight: 700;
@@ -202,16 +216,20 @@
     </div>
     <div class="queue-content">
         {#if queue}
-            {#each queue as person, index}
-                <div class="queue-item">
-                    {person}
-                    <button class="remove-button" on:click={() => removeUserFromQueue(index)}>&times;</button>
-                </div>
-            {/each}
+            {#if queue.length === 0}
+                <p class="info">Queue is empty.</p>
+            {:else}
+                {#each queue as person, index}
+                    <div class="queue-item">
+                        {person.user.firstName} {person.user.lastName}
+                        <button class="remove-button" on:click={() => removeUserFromQueue(person.userId)}>&times;</button>
+                    </div>
+                {/each}
+            {/if}
             <button class="joinQueue-button" on:click={joinQueue}>Записатися до черги</button>
             <button class="delete-queue-button" on:click={removeMyself}>Видалити себе з черги</button>    
         {:else}
-            <p class="loading">Loading...</p>
+            <p class="info">Loading...</p>
         {/if}
     </div>
 </div>
