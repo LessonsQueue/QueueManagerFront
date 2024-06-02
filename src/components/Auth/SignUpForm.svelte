@@ -11,10 +11,6 @@
     const dispatch = createEventDispatcher();
 
     const handleSubmit = () => {
-        if (password !== confirmPassword) {
-            alert('Passwords do not match');
-            return;
-        }
         dispatch('signup', { firstName, lastName, email, password, confirmPassword });
     }
 </script>
