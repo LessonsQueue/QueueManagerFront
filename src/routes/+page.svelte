@@ -3,6 +3,12 @@
     import Footer from '../components/Footer.svelte';
     import Content from '../components/Content.svelte';
     import Message from '../components/Message.svelte';
+    import { onMount } from 'svelte';
+    import { checkAuth } from '../auth';
+
+    onMount(() => {
+        checkAuth();
+    });
 </script>
 
 <style>

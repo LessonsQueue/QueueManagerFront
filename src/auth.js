@@ -49,3 +49,14 @@ export const safeFetch = async (url, method, body) => {
     throw new Error(data.message);
   }
 };
+
+export const checkAuth = () => {
+  const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
+  return auth.set(accessToken && refreshToken);
+};
+
+export const logOut = () => {
+  localStorage.clear();
+  auth.set(false);
+}
