@@ -19,7 +19,8 @@
         <a href="/">Queues</a>
         <a href="#about">About</a>
         <a href="#Feedback">Feedback</a>
-        <a href="#donate">Donate</a>
+        <a href="https://send.monobank.ua/jar/ATcjAVGpYV" target="_blank" rel="noreferrer noopener nofollow"
+           class = "header-element">Donate</a>
         {#if isLogined}
             <a href="/" on:click={handleLogOut}>Log out</a>
         {:else}
