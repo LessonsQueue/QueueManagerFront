@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import { fade } from 'svelte/transition';
     import Day from './Day.svelte';
     import Queue from './Queue.svelte';
     import { scheduleData, fetchSchedule } from '../scheduleFetch.js';
@@ -13,9 +14,13 @@
     let currentPairName = '';
     let currentQueue = null;
     let queueId = '';
+    let showContent = false;
 
     onMount(() => {
         fetchSchedule();
+        setTimeout(() => {
+            showContent = true;
+        }, 100);
     });
 
     $: scheduleData.subscribe(data => {
@@ -78,8 +83,8 @@
     }
 
 </style>
-
-<div class="content-wrapper">
+{#if showContent}
+<div class="content-wrapper" in:fade={{duration: 1000}}>
     <div class="day-container">
         {#each currentSchedule as day, index}
             <div class="day-item">
@@ -89,3 +94,4 @@
     </div>
     <Queue {currentPairName} position={position} open={isQueueOpen} queue={currentQueue} queueId={queueId} on:closeQueue="{closeQueue}" />
 </div>
+{/if}
