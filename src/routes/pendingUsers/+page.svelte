@@ -2,6 +2,16 @@
     import Header from "../../components/Header.svelte";
     import Footer from "../../components/Footer.svelte";
     import ApprovalPage from "../../components/ApprovalPage.svelte";
+    import { fade } from 'svelte/transition';
+    import {onMount} from "svelte";
+
+    let showContent = false;
+
+    onMount(() => {
+        setTimeout(() => {
+            showContent = true;
+        }, 100);
+    });
 </script>
 
 <style>
@@ -21,10 +31,12 @@
     }
 </style>
 
-<div class="container">
-    <Header />
-    <main>
-        <ApprovalPage />
-    </main>
-    <Footer />
-</div>
+{#if showContent}
+    <div class="container" in:fade={{duration: 1000}}>
+        <Header />
+        <main>
+            <ApprovalPage />
+        </main>
+        <Footer />
+    </div>
+{/if}
