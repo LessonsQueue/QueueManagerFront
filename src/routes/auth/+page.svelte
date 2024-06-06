@@ -5,16 +5,22 @@
   import Auth from '../../components/Auth/Auth.svelte';
   import { auth, checkAuth } from '../../auth';
   import { onMount } from 'svelte';
+  import { fade } from 'svelte/transition';
   import { showMessage } from '../../messageStore';
   import { goto } from '$app/navigation';
 
   let isLogined = false;
+  let showContent = false;
 
   auth.subscribe(value => {
     isLogined = value;
   });
 
   onMount(() => {
+    setTimeout(() => {
+      showContent = true;
+    }, 100);
+
     checkAuth();
     if (!isLogined) return;
     showMessage('error', 'You are already logined');
@@ -38,11 +44,13 @@
   }
 </style>
 
-<div class="app-container">
-  <Header />
-  <main>
-    <Auth />
-    <Message />
-  </main>
-  <Footer />
-</div>
+{#if showContent}
+  <div class="app-container" in:fade={{duration: 1000}}>
+    <Header />
+    <main>
+      <Auth />
+      <Message />
+    </main>
+    <Footer />
+  </div>
+{/if}
